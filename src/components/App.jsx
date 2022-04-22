@@ -5,6 +5,8 @@ import { ContactList } from './ContactList/ContactList';
 import { ContactFilter } from './ContactFilter/ContactFilter';
 import { ContactTitle } from './ContactList/ContactList.styled';
 import { nanoid } from 'nanoid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CONTACTS = 'contacts';
 
@@ -30,7 +32,7 @@ export const App = () => {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      return alert(`${name} is already in contacts.`);
+      return toast.error(`${name} is already in contacts.`);
     }
 
     return setContacts([newContact, ...contacts]);
@@ -63,6 +65,7 @@ export const App = () => {
         contacts={getContactsList}
         onDeleteContact={deleteContact}
       ></ContactList>
+      <ToastContainer />
     </ContactSection>
   );
 };
